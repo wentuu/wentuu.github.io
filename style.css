@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('../fonts/RobotoSlab-Bold.woff2') format('woff2'),
+         url('../fonts/RobotoSlab-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('../fonts/RobotoSlab-Regular.woff2') format('woff2'),
+         url('../fonts/RobotoSlab-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Пункт 21: теперь можно использовать шрифт */
+body {
+    font-family: 'Roboto Slab', serif;
+}
