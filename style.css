@@ -1,20 +1,166 @@
+/* 1. ШРИФТЫ */
 @font-face {
     font-family: 'Roboto Slab';
     src: url('../fonts/RobotoSlab-Bold.woff2') format('woff2'),
          url('../fonts/RobotoSlab-Bold.woff') format('woff');
     font-weight: 700;
-    font-style: normal;
 }
-
 @font-face {
     font-family: 'Roboto Slab';
     src: url('../fonts/RobotoSlab-Regular.woff2') format('woff2'),
          url('../fonts/RobotoSlab-Regular.woff') format('woff');
     font-weight: 400;
-    font-style: normal;
 }
 
-/* Пункт 21: теперь можно использовать шрифт */
+/* 2. ОБЩИЕ */
 body {
     font-family: 'Roboto Slab', serif;
+    background-color: #fdf2f2;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 3. ШАПКА С ПОИСКОМ */
+header {
+    background: #fff;
+    padding: 10px 0;
+}
+
+.header-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.search-box {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding-bottom: 2px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    font-size: 12px;
+    width: 150px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* 4. БЕЛЫЙ БЛОК КОНТЕНТА */
+.white-box {
+    background: #fff;
+    padding: 50px;
+    margin: 40px auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.main-h1 {
+    color: #4a6d4a;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.green-divider {
+    color: #4a6d4a;
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+.text-content p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.red-quote {
+    border-left: 3px solid #d9534f;
+    padding-left: 20px;
+    margin: 30px 0;
+    font-style: italic;
+}
+
+/* 5. ТРИ КОЛОНКИ */
+.programs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.program-col {
+    font-size: 13px;
+}
+
+.program-col h4 {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.program-col p b {
+    color: #444;
+}
+
+/* 6. СЕТКА КАРТОЧЕК (3 В РЯД) */
+.tomato-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.tomato-card {
+    background: #fff;
+    text-align: center;
+}
+
+.tomato-card img {
+    width: 100%;
+    display: block;
+}
+
+.card-footer {
+    border-top: 2px solid #4a6d4a;
+    padding: 15px;
+}
+
+.card-footer h6 {
+    color: #4a6d4a;
+    margin: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.card-footer p {
+    color: #888;
+    font-size: 11px;
+    margin: 5px 0 0;
+}
+
+/* 7. ФУТЕР */
+footer {
+    background: #2c3e50;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 11px;
 }
