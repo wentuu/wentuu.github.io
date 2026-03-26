@@ -310,3 +310,77 @@ header {
     .header-main-row { flex-direction: column; gap: 15px; }
     .footer-top { flex-direction: column; gap: 25px; text-align: center; }
 }
+/* Специфические стили для страницы Contact */
+.contact-title {
+    color: #4a6d4a;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.green-stars {
+    color: #4a6d4a;
+    letter-spacing: 2px;
+    margin-top: -10px;
+}
+
+.contact-form label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.contact-form .form-control, 
+.contact-form .form-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Капча */
+.captcha-text {
+    font-family: 'Courier New', monospace;
+    font-style: italic;
+    font-size: 20px;
+    color: #888;
+}
+
+/* Кнопка как в макете */
+.btn-send-message {
+    background-color: #61925f;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-send-message:hover {
+    background-color: #4a6d4a;
+    color: white;
+}
+
+/* Секция адреса */
+.address-section {
+    margin-top: 80px;
+}
+
+.address-header {
+    color: #4a6d4a;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    margin-bottom: 25px;
+}
+
+.address-content p {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.green-text {
+    color: #4a6d4a;
+    font-weight: bold;
+}

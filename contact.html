@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Agridera</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="py-3 bg-white border-bottom">
+        <div class="container">
+            <div class="header-search-row">
+                <div class="search-container">
+                    <input type="text" placeholder="Search">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <div class="header-main-row">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Logo" style="height: 50px;">
+                </a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Company Profile</a></li>
+                        <li class="dropdown">
+                            <a href="tomato.html">Products <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="tomato.html">All Tomatoes</a></li> 
+                                <li><a href="tomato-one.html">TAG 1002 (Specific)</a></li> 
+                            </ul>
+                        </li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">R & D</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="contact-banner" style="background: url('images/main-bg.jpg') center/cover; height: 350px;"></div>
+
+        <section class="py-5">
+            <div class="container" style="max-width: 960px;">
+                <h2 class="contact-title">Contact us</h2>
+                <div class="green-stars">*****</div>
+
+                <form class="mt-4 contact-form">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label">Name *</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Country</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Telephone</label>
+                                <input type="tel" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="mb-3">
+                                <label class="form-label">You are a</label>
+                                <select class="form-select">
+                                    <option selected>seed producer</option>
+                                    <option>distributor</option>
+                                    <option>grower</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">If other, please specify</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">You are interested in</label>
+                                <textarea class="form-control" style="height: 315px;"></textarea>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mt-4 captcha-row">
+                                <div class="d-flex align-items-center">
+                                    <span class="captcha-text me-3">7 c f 3</span>
+                                    <input type="text" class="form-control text-center" style="width: 120px;" placeholder="type code">
+                                </div>
+                                <button type="submit" class="btn btn-send-message">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="address-section text-center">
+                    <h4 class="address-header">Our Address</h4>
+                    <div class="address-content">
+                        <p>AGRIDERA Seeds & Agriculture Ltd.</p>
+                        <p>P.O Box 103,</p>
+                        <p>Gedera 70750, Israel.</p>
+                        <p>Telephone: <span class="green-text">+972 8 944 9222</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dark-footer">
+        <div class="container">
+            <div class="footer-top">
+                <nav class="footer-nav">
+                    <a href="index.html">PROFILE</a>
+                    <a href="#">MANAGEMENT</a>
+                    <a href="tomato.html">PRODUCTS</a>
+                    <a href="#">R&D</a>
+                    <a href="#">LINKS</a>
+                    <a href="#">SITEMAP</a>
+                    <a href="contact.html">CONTACT</a>
+                </nav>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">AGRIDERA SEEDS & AGRICULTURE LTD. © 2026</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
