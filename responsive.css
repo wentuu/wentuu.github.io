@@ -1,0 +1,146 @@
+
+
+/* --- Базовые настройки для всех мобильных (до 1024px) --- */
+@media (max-width: 1024px) {
+    /* Скрываем десктопное меню и показываем бургер */
+    .nav-menu { 
+        display: none; 
+    }
+    
+    .mobile-menu-toggle {
+        display: block !important;
+        font-size: 30px;
+        color: #4a6d4a;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    /* Выпадающее меню при клике */
+    nav#main-navigation.active .nav-menu {
+        display: block !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 9999;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        border-top: 1px solid #eee;
+    }
+
+    nav#main-navigation.active .nav-menu li {
+        display: block;
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    nav#main-navigation.active .nav-menu li a {
+        font-size: 18px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    /* Шапка: логотип и бургер по краям */
+    .header-main-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+}
+
+/* --- Планшеты и телефоны (768px и ниже) --- */
+@media (max-width: 768px) {
+    /* 1. ГЛАВНАЯ: Иконки культур (Wheat, Tomato и т.д.) строго в один ряд */
+    .row.text-center.g-2 .col-2 {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 20px;
+    }
+    
+    /* 2. VISION & MISSION: Картинка под текстом, всё по центру */
+    .row.align-items-center {
+        flex-direction: column !important;
+    }
+    
+    .col-md-6 {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 20px !important;
+    }
+
+    .img-fluid {
+        max-width: 90% !important;
+        margin-top: 20px;
+    }
+
+    /* 3. КАТАЛОГ (tomato.html): Карточки товаров по одной в ряд */
+    /* Если у тебя есть класс сетки для томатов, подставим его */
+    .row.g-4 .col-md-4, 
+    .row.g-4 .col-lg-3 {
+        width: 100% !important;
+    }
+
+    /* 4. ФУТЕР: Элементы друг под другом */
+    .footer-top {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 25px;
+    }
+    
+    .footer-nav {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* --- Специфические правки для iPhone 4 и малых экранов (480px - 320px) --- */
+@media (max-width: 480px) {
+    /* Заголовки чуть меньше, чтобы не разрывали экран */
+    h1 { font-size: 26px !important; }
+    h2 { font-size: 22px !important; }
+
+    /* Поиск в шапке на всю ширину */
+    .search-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Все кнопки на всю ширину (Read More, Send) */
+    .btn {
+        width: 100% !important;
+        display: block;
+    }
+
+    /* Страница товара: Таблицы характеристик */
+    table {
+        display: block;
+        overflow-x: auto; /* Появится прокрутка, если таблица не влезет */
+    }
+    
+    /* Убираем лишние отступы у контейнеров */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* --- Моя добавка: Эффекты для удобства --- */
+@media (max-width: 1024px) {
+    /* Добавим легкое затемнение контента при открытом меню */
+    body.menu-open {
+        overflow: hidden; /* Запрет прокрутки сайта, когда открыто меню */
+    }
+    
+    /* Делаем бургер-иконку анимированной при нажатии (опционально) */
+    .mobile-menu-toggle:active {
+        transform: scale(0.9);
+        transition: 0.2s;
+    }
+}
