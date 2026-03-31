@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=320, initial-scale=1.0"/>
-    <title>TAG 1002 - Agridera Seeds</title>
+    <title>Cabbage Details - Agridera Seeds</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
+
+<div id="app">
 
     <header>
         <div class="container">
@@ -24,11 +28,11 @@
                     <img src="images/logo.png" alt="Agridera">
                 </a>
 
-                <div class="mobile-menu-toggle">
+                <div class="mobile-menu-toggle" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </div>
 
-                <nav>
+                <nav id="main-navigation">
                     <ul class="nav-menu">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="#">Company Profile</a></li>
@@ -42,70 +46,42 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" v-if="product.id">
         <div class="white-box">
             <div class="product-grid">
                 
                 <div class="info-column">
-                    <a href="tomato.html" class="back-link">← Return to all tomatoes</a>
+                    <a href="tomato.html" class="back-link">← Return to all cabbage varieties</a>
                     
-                    <img src="images/product-header.png" alt="TAG 1002" class="header-img">
+                    <h1 style="color: #2e7d32; margin: 20px 0;">{{ product.title }}</h1>
                     
                     <div class="divider-stars">xxxxx</div>
 
                     <div class="yield-box">
                         <img src="images/yield-icon.png" alt="Icon" class="yield-icon">
-                        <span class="yield-text">Very high yield and<br>excellent fruits quality!</span>
+                        <span class="yield-text">Very high yield and<br>excellent quality!</span>
                     </div>
 
                     <h5 class="section-title">CHARACTERISTICS</h5>
                     <div class="title-underline"></div>
-                    
-                    <p class="resistance-text">
-                        <strong>Resistance</strong><br>
-                        HR: ToMV:0-2; Fol: 1,2; Ve/Vd;<br>
-                        IR: TYLCV
-                    </p>
+                    <p>{{ product.desc }}</p>
 
-                    <div class="specs-grid">
-                        <div class="spec-item">
-                            <h6>Plant</h6>
-                            <div class="title-underline"></div>
-                            <ul>
-                                <li>Strong vigor that provides good leaf coverage.</li>
-                                <li>Very high productivity with good fruit setting.</li>
-                                <li>Early matured variety.</li>
-                            </ul>
-                        </div>
-                        <div class="spec-item">
-                            <h6>Cycle</h6>
-                            <div class="title-underline"></div>
-                            <ul>
-                                <li>Spring</li>
-                                <li>Fall</li>
-                                <li>Winter</li>
-                            </ul>
-                        </div>
-                        <div class="spec-item">
-                            <h6>Fruit</h6>
-                            <div class="title-underline"></div>
-                            <ul>
-                                <li>Long shelf life on plant and post harvest.</li>
-                                <li>Nice shiny attractive deep red color.</li>
-                                <li>Average fruit size: 140 – 160 grams.</li>
-                            </ul>
-                        </div>
-                        <div class="spec-item">
-                            <h6>Color</h6>
-                            <div class="title-underline"></div>
-                            <p>Red</p>
-                        </div>
+                    <div style="margin-top: 30px;">
+                        <button v-if="!btnVisible" @click="addToCart(product.id)" 
+                                style="background-color: #2e7d32; color: white; border: none; padding: 15px 30px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+                            Add to cart
+                        </button>
+                        
+                        <a v-if="btnVisible" href="contact.html" 
+                           style="background-color: #007bff; color: white; text-decoration: none; padding: 15px 30px; border-radius: 5px; font-weight: bold; display: inline-block;">
+                            Go to cart
+                        </a>
                     </div>
                 </div>
 
                 <div class="photo-column">
                     <div class="image-border">
-                        <img src="images/tomato-full.jpg" alt="Tomato" class="main-photo">
+                        <img :src="'images/' + product.image" :alt="product.title" class="main-photo" style="width: 100%;">
                     </div>
                     <div class="btn-container">
                         <a href="#" class="pdf-button">
@@ -116,6 +92,11 @@
 
             </div>
         </div>
+    </main>
+
+    <main class="container" v-else style="text-align: center; padding: 100px 0;">
+        <h2>Please select a product from the catalog.</h2>
+        <a href="tomato.html" class="btn-more">Back to Products</a>
     </main>
 
     <footer class="dark-footer">
@@ -143,6 +124,17 @@
             AGRIDERA SEEDS & AGRICULTURE LTD. © 2026
         </div>
     </footer>
+
+</div> <script>
+    // Твой старый скрипт для меню, чтобы работал на мобилках
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('main-navigation');
+    if(menuBtn) {
+        menuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    }
+</script>
 
 </body>
 </html>

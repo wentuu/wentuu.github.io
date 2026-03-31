@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
 
-    <header class="py-3 bg-white border-bottom">
+<div id="app"> <header class="py-3 bg-white border-bottom">
         <div class="container">
             <div class="header-search-row">
                 <div class="search-container">
@@ -24,19 +26,19 @@
                     <img src="images/logo.png" alt="Logo" style="height: 50px;">
                 </a>
 
-                <div class="mobile-menu-toggle">
+                <div class="mobile-menu-toggle" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </div>
 
-                <nav>
+                <nav id="main-navigation">
                     <ul class="nav-menu">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="#">Company Profile</a></li>
                         <li class="dropdown">
                             <a href="tomato.html">Products <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
-                                <li><a href="tomato.html">All Tomatoes</a></li> 
-                                <li><a href="tomato-one.html">TAG 1002 (Specific)</a></li> 
+                                <li><a href="tomato.html">Cabbage Varieties</a></li> 
+                                <li><a href="tomato-one.html#2">Broccoli (Specific)</a></li> 
                             </ul>
                         </li>
                         <li><a href="#">Services</a></li>
@@ -53,10 +55,25 @@
 
         <section class="py-5">
             <div class="container" style="max-width: 960px;">
+                
+                <div v-if="cartProducts.length > 0" class="mb-5 p-4 border rounded bg-light shadow-sm">
+                    <h3 class="mb-3" style="color: #2e7d32;"><i class="fas fa-shopping-cart"></i> Your Order</h3>
+                    <ul class="list-group mb-3">
+                        <li v-for="item in cartProducts" :key="item.id" class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ item.title }}</strong>
+                                <br><small class="text-muted">{{ item.short_text }}</small>
+                            </div>
+                            <span class="badge bg-success rounded-pill">Selected</span>
+                        </li>
+                    </ul>
+                    <button @click="clearCart" class="btn btn-outline-danger btn-sm">Clear Selection</button>
+                </div>
+
                 <h2 class="contact-title">Contact us</h2>
                 <div class="green-stars">*****</div>
 
-                <form class="mt-4 contact-form">
+                <form class="mt-4 contact-form" @submit.prevent>
                     <div class="row g-4">
                         <div class="col-md-5">
                             <div class="mb-3">
@@ -64,47 +81,19 @@
                                 <input type="text" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Company Name</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Position</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">City</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Country</label>
-                                <input type="text" class="form-control">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Telephone</label>
                                 <input type="tel" class="form-control">
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email *</label>
-                                <input type="email" class="form-control" required>
-                            </div>
                         </div>
 
                         <div class="col-md-7">
                             <div class="mb-3">
-                                <label class="form-label">You are a</label>
-                                <select class="form-select">
-                                    <option selected>seed producer</option>
-                                    <option>distributor</option>
-                                    <option>grower</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">If other, please specify</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">You are interested in</label>
-                                <textarea class="form-control" style="height: 315px;"></textarea>
+                                <textarea class="form-control" style="height: 200px;" placeholder="I am interested in..."></textarea>
                             </div>
 
                             <div class="d-flex align-items-center justify-content-between mt-4 captcha-row">
@@ -118,11 +107,10 @@
                     </div>
                 </form>
 
-                <div class="address-section text-center">
+                <div class="address-section text-center mt-5">
                     <h4 class="address-header">Our Address</h4>
                     <div class="address-content">
                         <p>AGRIDERA Seeds & Agriculture Ltd.</p>
-                        <p>P.O Box 103,</p>
                         <p>Gedera 70750, Israel.</p>
                         <p>Telephone: <span class="green-text">+972 8 944 9222</span></p>
                     </div>
@@ -132,29 +120,21 @@
     </main>
 
     <footer class="dark-footer">
-        <div class="container">
-            <div class="footer-top">
-                <nav class="footer-nav">
-                    <a href="index.html">PROFILE</a>
-                    <a href="#">MANAGEMENT</a>
-                    <a href="tomato.html">PRODUCTS</a>
-                    <a href="#">R&D</a>
-                    <a href="#">LINKS</a>
-                    <a href="#">SITEMAP</a>
-                    <a href="contact.html">CONTACT</a>
-                </nav>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
+        <div class="container text-center py-4">
+            <div class="footer-bottom">AGRIDERA SEEDS & AGRICULTURE LTD. © 2026</div>
         </div>
-        <div class="footer-bottom">AGRIDERA SEEDS & AGRICULTURE LTD. © 2026</div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div> <script>
+    // Скрипт меню из ПР5
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('main-navigation');
+    if(menuBtn) {
+        menuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
