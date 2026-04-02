@@ -1,63 +1,39 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=320, initial-scale=1.0"/>
     <title>Contact Us - Agridera</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/main.js" defer></script>
 </head>
 <body>
 
-<div id="app"> 
+<div id="app">
     <header class="py-3 bg-white border-bottom">
-        <div class="container">
-            <div class="header-search-row">
-                <div class="search-container">
-                    <input type="text" placeholder="Search">
-                    <i class="fas fa-search"></i>
-                </div>
-            </div>
-            <div class="header-main-row">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Logo" style="height: 50px;">
-                </a>
-                <div class="mobile-menu-toggle" id="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <nav id="main-navigation">
-                    <ul class="nav-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">Company Profile</a></li>
-                        <li class="dropdown">
-                            <a href="tomato.html">Products <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="tomato.html">Cabbage Varieties</a></li> 
-                                <li><a href="tomato-one.html#2">Broccoli (Specific)</a></li> 
-                            </ul>
-                        </li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">R & D</a></li>
-                        <li><a href="contact.html" class="active">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html"><img src="images/logo.png" alt="Logo" style="height: 50px;"></a>
+            <nav>
+                <ul class="nav d-flex list-unstyled m-0">
+                    <li class="ms-4"><a href="index.html" class="text-decoration-none text-dark">Home</a></li>
+                    <li class="ms-4"><a href="tomato.html" class="text-decoration-none text-dark">Products</a></li>
+                    <li class="ms-4"><a href="contact.html" class="text-decoration-none text-success fw-bold">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <main>
-        <div class="contact-banner" style="background: url('images/main-bg.jpg') center/cover; height: 350px;"></div>
+        <div class="contact-banner" style="background: url('images/main-bg.jpg') center/cover; height: 300px;"></div>
 
         <section class="py-5">
             <div class="container" style="max-width: 960px;">
                 
                 <div v-if="cart.length > 0" class="mb-5">
-                    <h3 class="mb-3" style="color: #2e7d32;"><i class="fas fa-shopping-cart"></i> Your Selection</h3>
-                    <table class="table table-bordered align-middle bg-white">
+                    <h3 class="mb-3">Selected Bananas</h3>
+                    <table class="table table-bordered align-middle">
                         <thead class="table-light">
                             <tr>
                                 <th>Image</th>
@@ -68,8 +44,8 @@
                         </thead>
                         <tbody>
                             <tr v-for="item in cart" :key="item.id">
-                                <td style="width: 80px;"><img :src="'images/' + item.image" width="60" height="60" style="object-fit: cover;"></td>
-                                <td><strong>{{ item.title }}</strong></td>
+                                <td style="width: 80px;"><img :src="'images/' + item.image" width="60"></td>
+                                <td>{{ item.title }}</td>
                                 <td>{{ item.short_text }}</td>
                                 <td class="text-center">
                                     <i class="fas fa-times text-danger" style="cursor: pointer;" @click="removeFromCart(item.id)"></i>
@@ -82,7 +58,7 @@
                 <h2 class="contact-title">Contact us</h2>
                 <div class="green-stars">*****</div>
 
-                <form v-if="!orderVisible" class="mt-4 contact-form" @submit.prevent="makeOrder">
+                <form v-if="!orderVisible" class="mt-4" @submit.prevent="makeOrder">
                     <div class="row g-4">
                         <div class="col-md-5">
                             <div class="mb-3">
@@ -102,52 +78,32 @@
                         <div class="col-md-7">
                             <div class="mb-3">
                                 <label class="form-label">You are interested in</label>
-                                <textarea class="form-control" style="height: 200px;" v-model="contactFields.interest" placeholder="I am interested in..."></textarea>
+                                <textarea class="form-control" style="height: 160px;" v-model="contactFields.interest"></textarea>
                             </div>
 
-                            <div class="d-flex align-items-center justify-content-between mt-4 captcha-row">
+                            <div class="d-flex align-items-center justify-content-between mt-4">
                                 <div class="d-flex align-items-center">
-                                    <span class="captcha-text me-3">7 c f 3</span>
+                                    <span class="captcha-text me-3" style="background:#eee; padding:5px 15px;">7 c f 3</span>
                                     <input type="text" class="form-control text-center" style="width: 120px;" placeholder="type code">
                                 </div>
-                                <button type="submit" class="btn btn-send-message">Send Message</button>
+                                <button type="submit" class="btn btn-success px-4 py-2">Send Message</button>
                             </div>
                         </div>
                     </div>
                 </form>
 
-                <div v-else class="alert alert-success p-4 mt-4 shadow-sm text-center">
-                    <h3>Message Sent Successfully!</h3>
-                    <div class="text-start d-inline-block mt-3">
-                        <p><strong>Name:</strong> {{ contactFields.name }}</p>
-                        <p><strong>Email:</strong> {{ contactFields.email }}</p>
-                        <p v-if="contactFields.phone"><strong>Phone:</strong> {{ contactFields.phone }}</p>
-                        <p v-if="contactFields.interest"><strong>Interest:</strong> {{ contactFields.interest }}</p>
-                    </div>
-                    <div class="mt-3">
-                        <button class="btn btn-outline-success" onclick="location.reload()">Send another message</button>
-                    </div>
-                </div>
-
-                <div class="address-section text-center mt-5">
-                    <h4 class="address-header">Our Address</h4>
-                    <div class="address-content">
-                        <p>AGRIDERA Seeds & Agriculture Ltd.</p>
-                        <p>Gedera 70750, Israel.</p>
-                        <p>Telephone: <span class="green-text">+972 8 944 9222</span></p>
-                    </div>
+                <div v-else class="alert alert-success p-4 mt-4">
+                    <h3>Order Placed Successfully!</h3>
+                    <p><strong>Name:</strong> {{ contactFields.name }}</p>
+                    <p><strong>Email:</strong> {{ contactFields.email }}</p>
+                    <p v-if="contactFields.phone"><strong>Phone:</strong> {{ contactFields.phone }}</p>
+                    <p v-if="contactFields.interest"><strong>Message:</strong> {{ contactFields.interest }}</p>
+                    <button class="btn btn-outline-success mt-3" onclick="location.reload()">Back</button>
                 </div>
             </div>
         </section>
     </main>
-
-    <footer class="dark-footer">
-        <div class="container text-center py-4">
-            <div class="footer-bottom">AGRIDERA SEEDS & AGRICULTURE LTD. © 2026</div>
-        </div>
-    </footer>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
