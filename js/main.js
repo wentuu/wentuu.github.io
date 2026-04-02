@@ -1,7 +1,6 @@
 var app = new Vue({
     el: '#app',
     data: {
-        // Массив товаров согласно варианту 22 (Капуста)
         products: [
             {id: 1, title: 'Белокочанная капуста', short_text: 'Идеальна для засолки и хранения.', image: 'kapusta1.jpg', desc: 'Позднеспелый сорт с плотными кочанами.'},
             {id: 2, title: 'Брокколи', short_text: 'Полезный диетический продукт.', image: 'kapusta2.jpg', desc: 'Богата витаминами С и К, отлично подходит для заморозки.'},
@@ -9,61 +8,54 @@ var app = new Vue({
             {id: 4, title: 'Пекинская капуста', short_text: 'Основа для свежих салатов.', image: 'kapusta4.jpg', desc: 'Раннеспелый сорт с очень нежными листьями.'},
             {id: 5, title: 'Брюссельская капуста', short_text: 'Маленькие кочанчики с ярким вкусом.', image: 'kapusta5.jpg', desc: 'Высокое содержание белка и характерный аромат.'}
         ],
-        product: {},       // Текущий товар для страницы tomato-one
-        cartProducts: [],  // Список товаров в корзине для страницы contact
-        btnVisible: 0      // Состояние кнопок "Add to cart" / "Go to cart"
+        product: {},
+        cart: [],
+        contactFields: { name: '', email: '', phone: '', interest: '' }, // Поля формы
+        orderVisible: false,
+        btnVisible: 0
     },
     mounted: function() {
-        // Вызываем проверку при загрузке любой страницы
         this.getProduct();
         this.checkInCart();
-        this.loadCart(); // Важно для страницы контактов!
+        this.getCart();
     },
     methods: {
-        // Получение ID товара из хэша (#1, #2 и т.д.)
         getProduct: function() {
             if (window.location.hash) {
                 var id = window.location.hash.replace('#', '');
-                for (var i in this.products) {
-                    if (this.products[i].id == id) {
-                        this.product = this.products[i];
-                        break;
-                    }
-                }
+                this.product = this.products.find(p => p.id == id) || {};
             }
         },
-        // Добавление товара в корзину (localStorage)
         addToCart: function(id) {
-            var cart = [];
-            if (window.localStorage.getItem('cart')) {
-                cart = window.localStorage.getItem('cart').split(',');
-            }
-            if (cart.indexOf(String(id)) === -1) {
-                cart.push(id);
-                window.localStorage.setItem('cart', cart.join(','));
-                this.btnVisible = 1; // Показываем кнопку "Go to cart"
-            }
-        },
-        // Проверка: есть ли текущий товар в корзине
-        checkInCart: function() {
-            var cart = window.localStorage.getItem('cart') ? window.localStorage.getItem('cart').split(',') : [];
-            if (this.product.id && cart.indexOf(String(this.product.id)) !== -1) {
+            var local = window.localStorage.getItem('cart') ? window.localStorage.getItem('cart').split(',') : [];
+            if (local.indexOf(String(id)) === -1) {
+                local.push(id);
+                window.localStorage.setItem('cart', local.join(','));
                 this.btnVisible = 1;
+                this.getCart();
             }
         },
-        // ЗАГРУЗКА КОРЗИНЫ ДЛЯ CONTACT.HTML
-        loadCart: function() {
-            var rawCart = window.localStorage.getItem('cart');
-            if (rawCart) {
-                var cartIds = rawCart.split(',');
-                // Фильтруем основной массив, оставляя только выбранные ID
-                this.cartProducts = this.products.filter(p => cartIds.includes(String(p.id)));
+        getCart: function() {
+            var local = window.localStorage.getItem('cart') ? window.localStorage.getItem('cart').split(',') : [];
+            this.cart = this.products.filter(p => local.includes(String(p.id)));
+        },
+        removeFromCart: function(id) {
+            var local = window.localStorage.getItem('cart').split(',');
+            var index = local.indexOf(String(id));
+            if (index > -1) {
+                local.splice(index, 1);
+                window.localStorage.setItem('cart', local.join(','));
+                this.getCart();
             }
         },
-        // Очистка корзины
-        clearCart: function() {
+        checkInCart: function() {
+            var local = window.localStorage.getItem('cart') ? window.localStorage.getItem('cart').split(',') : [];
+            if (this.product.id && local.indexOf(String(this.product.id)) !== -1) this.btnVisible = 1;
+        },
+        makeOrder: function() {
+            this.orderVisible = true;
             window.localStorage.removeItem('cart');
-            this.cartProducts = [];
+            this.cart = [];
         }
     }
 });
